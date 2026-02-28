@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 import { Box, Text } from "../../components";
 import { theme } from "../../styles/Theme/theme";
 
 const Home = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const faceContainerRef = useRef<HTMLDivElement>(null);
   const eyesTrackRef = useRef<HTMLDivElement>(null);
   const eyesBlinkRef = useRef<HTMLSpanElement>(null);
@@ -17,10 +19,21 @@ const Home = () => {
   const scrollTextRef = useRef<HTMLSpanElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
 
-  const [isHovering, setIsHovering] = useState(false);
+  const shortRefs = useRef<(HTMLElement | null)[]>([]);
+  const longRefs = useRef<(HTMLElement | null)[]>([]);
 
-  const handleHoverEnter = () => setIsHovering(true);
-  const handleHoverLeave = () => setIsHovering(false);
+  const transitionTlRef = useRef<gsap.core.Timeline | null>(null);
+  const scrollValRef = useRef(0);
+  const isTransitioningRef = useRef(false);
+
+  const [isHovering, setIsHovering] = useState(false);
+  const [cursorText, setCursorText] = useState("->");
+
+  const menuItems = [
+    { short: "p", long: "projetos" },
+    { short: "pp", long: "contato" },
+    { short: "ppp", long: "pedro" },
+  ];
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.2 });
@@ -64,6 +77,48 @@ const Home = () => {
     let lastX = window.innerWidth / 2;
     let lastY = window.innerHeight / 2;
 
+    const transitionTl = gsap.timeline({ paused: true });
+    transitionTlRef.current = transitionTl;
+
+    gsap.set(scrollLineRef.current, { transformOrigin: "bottom center" });
+    gsap.set(scrollRef.current, { zIndex: 9998 });
+
+    const textObj = { val: 0 };
+
+    transitionTl.to(
+      scrollLineRef.current,
+      { scaleY: 60, duration: 1, ease: "power2.in" },
+      0,
+    );
+
+    transitionTl.to(
+      textObj,
+      {
+        val: 1,
+        duration: 1,
+        onUpdate: () => {
+          const p = textObj.val;
+          const os = "O".repeat(Math.floor(p * 15) + 1);
+          const ex = "!".repeat(Math.floor(p * 10));
+          if (scrollTextRef.current) {
+            scrollTextRef.current.innerText = `SCR${os}LL${ex}`;
+          }
+        },
+      },
+      0,
+    );
+
+    transitionTl.to(
+      scrollLineRef.current,
+      { scaleX: 3000, duration: 1, ease: "power2.inOut" },
+      1,
+    );
+    transitionTl.to(
+      [faceContainerRef.current, headerRef.current, scrollTextRef.current],
+      { opacity: 0, duration: 0.5 },
+      1,
+    );
+
     const handleMouseMove = (e: MouseEvent) => {
       xTo(e.clientX);
       yTo(e.clientY);
@@ -98,14 +153,45 @@ const Home = () => {
       }
     };
 
+    const handleWheel = (e: WheelEvent) => {
+      if (isTransitioningRef.current) return;
+
+      scrollValRef.current += e.deltaY;
+
+      if (scrollValRef.current < 0) {
+        scrollValRef.current = 0;
+      } else if (scrollValRef.current > 1500) {
+        scrollValRef.current = 1500;
+      }
+
+      const progress = scrollValRef.current / 1500;
+
+      gsap.to(transitionTl, {
+        progress: progress,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: true,
+      });
+
+      if (progress >= 1 && !isTransitioningRef.current) {
+        isTransitioningRef.current = true;
+        setTimeout(() => {
+          navigate("/projetos");
+        }, 600);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("wheel", handleWheel);
 
     return () => {
       tl.kill();
       blinkTl.kill();
+      transitionTl.kill();
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("wheel", handleWheel);
     };
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     if (mouthRef.current) {
@@ -123,28 +209,70 @@ const Home = () => {
     }
   }, [isHovering]);
 
+  const handleMenuEnter = (index: number) => {
+    setIsHovering(true);
+    setCursorText("<");
+    gsap.to(shortRefs.current[index], {
+      y: -15,
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+    gsap.fromTo(
+      longRefs.current[index],
+      { y: 15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" },
+    );
+  };
+
+  const handleMenuLeave = (index: number) => {
+    setIsHovering(false);
+    setCursorText("->");
+    gsap.to(longRefs.current[index], {
+      y: 15,
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.inOut",
+    });
+    gsap.fromTo(
+      shortRefs.current[index],
+      { y: -15, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.4, ease: "power2.inOut" },
+    );
+  };
+
   const handleScrollEnter = () => {
-    handleHoverEnter();
-    gsap.to(scrollLineRef.current, {
-      height: "60px",
-      duration: 0.3,
-      ease: "power2.out",
-    });
-    gsap.to(scrollTextRef.current, {
-      y: -5,
-      duration: 0.3,
-      ease: "power2.out",
-    });
+    setIsHovering(true);
+    setCursorText("<");
+    if (!isTransitioningRef.current && scrollValRef.current === 0) {
+      gsap.to(scrollLineRef.current, {
+        height: "60px",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(scrollTextRef.current, {
+        y: -5,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
   const handleScrollLeave = () => {
-    handleHoverLeave();
-    gsap.to(scrollLineRef.current, {
-      height: "40px",
-      duration: 0.3,
-      ease: "power2.out",
-    });
-    gsap.to(scrollTextRef.current, { y: 0, duration: 0.3, ease: "power2.out" });
+    setIsHovering(false);
+    setCursorText("->");
+    if (!isTransitioningRef.current && scrollValRef.current === 0) {
+      gsap.to(scrollLineRef.current, {
+        height: "40px",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(scrollTextRef.current, {
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
   return (
@@ -174,7 +302,7 @@ const Home = () => {
           fontSize="1.5rem"
           fontWeight={700}
         >
-          -&gt;
+          {cursorText}
         </Text>
       </Box>
 
@@ -186,19 +314,42 @@ const Home = () => {
         padding={theme.spacing.large}
         display="flex"
         justifyContent="flex-end"
+        gap="30px"
         style={{ opacity: 0 }}
         zIndex={10}
       >
-        <Text
-          color={theme.colors.textInverse}
-          fontWeight={500}
-          fontSize="1rem"
-          onMouseEnter={handleHoverEnter}
-          onMouseLeave={handleHoverLeave}
-          style={{ cursor: "none" }}
-        >
-          MENU =
-        </Text>
+        {menuItems.map((item, index) => (
+          <Box
+            key={item.short}
+            display="grid"
+            style={{ placeItems: "center", cursor: "none" }}
+            onMouseEnter={() => handleMenuEnter(index)}
+            onMouseLeave={() => handleMenuLeave(index)}
+          >
+            <Text
+              ref={(el: any) => (shortRefs.current[index] = el)}
+              color={theme.colors.textInverse}
+              fontWeight={500}
+              fontSize="1rem"
+              style={{ gridArea: "1/1" }}
+            >
+              {item.short}
+            </Text>
+            <Text
+              ref={(el: any) => (longRefs.current[index] = el)}
+              color={theme.colors.textInverse}
+              fontWeight={500}
+              fontSize="1rem"
+              style={{
+                gridArea: "1/1",
+                opacity: 0,
+                transform: "translateY(15px)",
+              }}
+            >
+              {item.long}
+            </Text>
+          </Box>
+        ))}
       </Box>
 
       <Box
@@ -243,7 +394,7 @@ const Home = () => {
       <Box
         ref={scrollRef}
         position="absolute"
-        bottom="40px"
+        bottom="0"
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -251,7 +402,6 @@ const Home = () => {
         style={{ opacity: 0, cursor: "none" }}
         onMouseEnter={handleScrollEnter}
         onMouseLeave={handleScrollLeave}
-        zIndex={10}
       >
         <Text
           ref={scrollTextRef}

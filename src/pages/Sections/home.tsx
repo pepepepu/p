@@ -117,7 +117,7 @@ const Hero = () => {
             fontFamily="Instrument Serif"
             color="#ffffff"
           >
-            Projetado por pp, uma mente em distorção
+            projetado por pp, uma mente em distorção
           </Text>
         </Box>
       </Box>

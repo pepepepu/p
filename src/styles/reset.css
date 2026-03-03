@@ -11,4 +11,31 @@ html,
   font-family: "Cascadia Mono", monospace;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  background-color: #e5e5e5;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: "#E5E5E5";
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+  border: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: black "#E5E5E5";
 }

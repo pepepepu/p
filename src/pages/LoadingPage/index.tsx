@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Text } from "../../components";
 
-import horse from "../../assets/media/horse3.mp4";
 import { theme } from "../../styles/Theme/theme";
 
 const LoadingPage = () => {
@@ -117,27 +116,6 @@ const LoadingPage = () => {
       overflow={"hidden"}
     >
       <Box
-        ref={videoWrapperRef}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        width={"12dvw"}
-      >
-        <Box
-          as={"video"}
-          width={"100%"}
-          height={"100%"}
-          style={{ objectFit: "cover" }}
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src={horse} type="video/mp4" />
-        </Box>
-      </Box>
-
-      <Box
         position="relative"
         display="flex"
         justifyContent="center"
@@ -146,9 +124,9 @@ const LoadingPage = () => {
         <Box ref={percentRef} display="flex">
           <Text
             fontSize={"1.5rem"}
-            fontWeight={600}
             lineHeight="1"
             color={theme.colors.textInverse}
+            fontFamily="Instrument Serif"
           >
             {progress}%
           </Text>
@@ -164,8 +142,8 @@ const LoadingPage = () => {
           <Text
             ref={leftParenRef}
             fontSize={"2rem"}
-            fontWeight={600}
             color={theme.colors.textInverse}
+            fontFamily="Instrument Serif"
             style={{ transform: "translateX(-40vw)", opacity: 0 }}
           >
             (
@@ -174,7 +152,7 @@ const LoadingPage = () => {
           <Text
             ref={letterRef}
             fontSize={"2rem"}
-            fontWeight={600}
+            fontFamily="Instrument Serif"
             color={theme.colors.textInverse}
             style={{ scale: 0, opacity: 0 }}
           >
@@ -184,7 +162,7 @@ const LoadingPage = () => {
           <Text
             ref={rightParenRef}
             fontSize={"2rem"}
-            fontWeight={600}
+            fontFamily="Instrument Serif"
             color={theme.colors.textInverse}
             style={{ transform: "translateX(40vw)", opacity: 0 }}
           >

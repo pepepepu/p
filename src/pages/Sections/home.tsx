@@ -2,11 +2,13 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { Box, Text } from "../../components";
+import { useDeviceType } from "../../hooks/useDeviceType";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useDeviceType();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,12 +50,23 @@ const Hero = () => {
       height="100dvh"
       position="relative"
       display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      padding="0 10vw"
+      flexDirection={isMobile ? "column" : "row"}
+      alignItems={"center"}
+      justifyContent={isMobile ? "center" : "space-between"}
+      padding={isMobile ? "0 8vw" : "0 10vw"}
     >
-      <Box className="hero-anim" width="35%" style={{ marginTop: "15dvh" }}>
-        <Text fontSize="1.5dvw" fontFamily="Instrument Serif" color={"#FFFFFF"}>
+      <Box
+        className="hero-anim"
+        width={isMobile ? "100%" : "35%"}
+        style={{ marginTop: isMobile ? "0" : "15dvh" }}
+      >
+        <Text
+          fontSize={isMobile ? "5.5vw" : "1.5dvw"}
+          fontFamily="Instrument Serif"
+          color="#FFFFFF"
+          textAlign="left"
+          lineHeight={isMobile ? "1.2" : "1"}
+        >
           I build systems the way desire builds identity
           <br />
           stretching structure until it becomes expression.
@@ -64,31 +77,46 @@ const Hero = () => {
         </Text>
       </Box>
 
-      <Box className="hero-anim" width="35%" style={{ marginTop: "15dvh" }}>
+      <Box
+        className="hero-anim"
+        width={isMobile ? "100%" : "35%"}
+        style={{ marginTop: isMobile ? "8vh" : "15dvh" }}
+      >
         <Text
-          fontSize="1.5dvw"
+          fontSize={isMobile ? "5.5vw" : "1.5dvw"}
           fontFamily="Instrument Serif"
-          color={"#FFFFFF"}
+          color="#FFFFFF"
           textAlign="right"
+          lineHeight={isMobile ? "1.2" : "1"}
         >
           Pedro Paulo
           <br />
-          22y
-          <br />
           Computer Scientist
           <br />
-          UI/UX, mobile e web
+          UI/UX, mobile and web developer
         </Text>
       </Box>
 
       <Box
         position="absolute"
-        bottom="8vh"
-        left="50%"
-        style={{ transform: "translateX(-50%)" }}
+        bottom={isMobile ? "6vh" : "8vh"}
+        width={isMobile ? "100%" : "auto"}
+        left={isMobile ? "0" : "50%"}
+        style={{ transform: isMobile ? "translateX(0%)" : "translateX(-50%)" }}
       >
-        <Box className="hero-anim" textAlign="center">
-          <Text fontSize="1.2dvw" fontFamily="Instrument Serif" color="#ffffff">
+        <Box
+          className="hero-anim"
+          textAlign="center"
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={isMobile ? "100%" : "auto"}
+        >
+          <Text
+            fontSize={isMobile ? "4.5vw" : "1.2dvw"}
+            fontFamily="Instrument Serif"
+            color="#ffffff"
+          >
             engineered by pepe, a mind in distortion
           </Text>
         </Box>

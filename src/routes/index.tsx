@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, LoadingPage, Projetos } from "../pages";
+import { Home, LoadingPage } from "../pages";
 
 export function AppRoutes() {
   return (
@@ -7,7 +7,6 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<LoadingPage />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/projetos" element={<Projetos />} />
       </Routes>
     </BrowserRouter>
   );

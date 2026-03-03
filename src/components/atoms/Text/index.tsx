@@ -60,6 +60,7 @@ const Text = styled.p.withConfig({
   padding: 0;
   font-family: "Cascadia Mono", monospace;
   font-weight: 500;
+  line-height: 1;
 
   /* Tipografia */
   ${({ theme, fontSize }) =>

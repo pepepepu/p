@@ -10,4 +10,5 @@ html,
   min-height: 100vh;
   font-family: "Cascadia Mono", monospace;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }

@@ -82,3 +82,17 @@
   font-weight: 700;
   font-style: italic;
 }
+
+/* --- Instrument Serif --- */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../assets/fonts/InstrumentSerif-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}

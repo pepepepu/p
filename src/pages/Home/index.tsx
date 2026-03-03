@@ -20,6 +20,12 @@ const Home = () => {
     ScrollTrigger.clearScrollMemory("manual");
     window.scrollTo(0, 0);
 
+    gsap.fromTo(
+      containerRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 1.2, ease: "power2.out" },
+    );
+
     const timeoutId = setTimeout(() => {
       window.scrollTo(0, 0);
       ScrollTrigger.refresh();

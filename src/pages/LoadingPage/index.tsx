@@ -10,7 +10,6 @@ const LoadingPage = () => {
   const [progress, setProgress] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoWrapperRef = useRef<HTMLDivElement>(null);
   const percentRef = useRef<HTMLDivElement>(null);
   const letterRef = useRef<HTMLSpanElement>(null);
   const leftParenRef = useRef<HTMLSpanElement>(null);
@@ -30,22 +29,11 @@ const LoadingPage = () => {
       },
     });
 
-    tl.to(videoWrapperRef.current, {
-      height: 0,
-      scale: 0.5,
-      opacity: 0,
+    tl.to(containerRef.current, {
+      gap: 0,
       duration: 0.8,
       ease: "expo.inOut",
     });
-    tl.to(
-      containerRef.current,
-      {
-        gap: 0,
-        duration: 0.8,
-        ease: "expo.inOut",
-      },
-      "<",
-    );
 
     tl.to(
       percentRef.current,
@@ -86,15 +74,26 @@ const LoadingPage = () => {
     tl.to(
       pWrapperRef.current,
       {
-        scale: 2000,
+        scale: 450,
         opacity: 0.9,
         duration: 1.2,
         ease: "expo.inOut",
+        force3D: true,
+      },
+      "+=0.2",
+    );
+
+    tl.to(
+      containerRef.current,
+      {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
         onComplete: () => {
           navigate("/home");
         },
       },
-      "+=0.2",
+      "-=0.4",
     );
 
     return () => {
@@ -105,7 +104,7 @@ const LoadingPage = () => {
   return (
     <Box
       ref={containerRef}
-      background={theme.colors.backgroundInverse}
+      background={theme.colors.background}
       display={"flex"}
       flexDirection={"column"}
       width={"100dvw"}
@@ -125,7 +124,7 @@ const LoadingPage = () => {
           <Text
             fontSize={"1.5rem"}
             lineHeight="1"
-            color={theme.colors.textInverse}
+            color={theme.colors.text}
             fontFamily="Instrument Serif"
           >
             {progress}%
@@ -142,7 +141,7 @@ const LoadingPage = () => {
           <Text
             ref={leftParenRef}
             fontSize={"2rem"}
-            color={theme.colors.textInverse}
+            color={theme.colors.text}
             fontFamily="Instrument Serif"
             style={{ transform: "translateX(-40vw)", opacity: 0 }}
           >
@@ -153,7 +152,7 @@ const LoadingPage = () => {
             ref={letterRef}
             fontSize={"2rem"}
             fontFamily="Instrument Serif"
-            color={theme.colors.textInverse}
+            color={theme.colors.text}
             style={{ scale: 0, opacity: 0 }}
           >
             p
@@ -163,7 +162,7 @@ const LoadingPage = () => {
             ref={rightParenRef}
             fontSize={"2rem"}
             fontFamily="Instrument Serif"
-            color={theme.colors.textInverse}
+            color={theme.colors.text}
             style={{ transform: "translateX(40vw)", opacity: 0 }}
           >
             )

@@ -22,7 +22,7 @@ const Header = ({ scrollContainer }: HeaderProps) => {
   const { isMobile } = useDeviceType();
 
   const phrase =
-    "desire stretching beyond the body, reshaping everything it dares to touch, dissolving the limits of form";
+    "desejo se estendendo além do corpo, remodelando tudo o que ousa tocar, dissolvendo os limites da forma.";
 
   useEffect(() => {
     const ctx = gsap.context(() => {

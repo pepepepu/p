@@ -11,14 +11,14 @@ const projectsData = [
   {
     title: "aura",
     description:
-      "Aura is a sonic reflection engine connected to your Last.fm data. Your listening history transforms into a living landscape of light, color, and emotion.",
+      "Aura é um motor de reflexão sonora conectado aos seus dados do Last.fm. Seu histórico de escuta se transforma em uma paisagem viva de luz, cor e emoção.",
     path: "M 10 90 L 50 10 L 90 90 Z",
     link: "https://github.com/pepepepu/aura",
   },
   {
     title: "media .",
     description:
-      "media . A cultural identity hub that turns your Spotify, Last.fm, Letterboxd, and Pinterest data into a unified, real-time visual interface.",
+      "media . Um hub de identidade cultural que transforma seus dados do Spotify, Last.fm, Letterboxd e Pinterest em uma interface visual unificada, em tempo real.",
     path: "M 10 50 Q 50 10 90 50 T 90 90",
     link: "https://www.behance.net/gallery/241873165/media-Cultural-Identity-Hub-Dashboard",
   },

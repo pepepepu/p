@@ -57,7 +57,7 @@ const Hero = () => {
     >
       <Box
         className="hero-anim"
-        width={isMobile ? "100%" : "35%"}
+        width={isMobile ? "100%" : "45%"}
         style={{ marginTop: isMobile ? "70px" : "15dvh" }}
       >
         <Text
@@ -67,13 +67,13 @@ const Hero = () => {
           textAlign="left"
           lineHeight={isMobile ? "1.2" : "1"}
         >
-          I build systems the way desire builds identity
+          Eu construo sistemas da mesma forma que o desejo constrói identidade
           <br />
-          stretching structure until it becomes expression.
+          esticando a estrutura até que ela se torne expressão.
           <br />
-          Logic, intensity, and excess are not contradictions.
+          Lógica, intensidade e excesso não são contradições.
           <br />
-          They are architecture.
+          São arquitetura.
         </Text>
       </Box>
 
@@ -91,9 +91,9 @@ const Hero = () => {
         >
           Pedro Paulo
           <br />
-          Computer Scientist
+          Cientista da Computação
           <br />
-          UI/UX, mobile and web developer
+          Desenvolvedor UI/UX, mobile e web
         </Text>
       </Box>
 
@@ -117,7 +117,7 @@ const Hero = () => {
             fontFamily="Instrument Serif"
             color="#ffffff"
           >
-            engineered by pepe, a mind in distortion
+            Projetado por pp, uma mente em distorção
           </Text>
         </Box>
       </Box>

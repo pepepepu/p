@@ -90,7 +90,8 @@ const Twisted = () => {
           lineHeight={isMobile ? "1.3" : "1.1"}
           style={{ textTransform: "uppercase" }}
         >
-          Distilling chaos into pure intent. Grounded in the academic depths of{" "}
+          Destilando o caos em intenção pura. Enraizado nas profundezas
+          acadêmicas da{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
             UFS
             <svg
@@ -117,9 +118,9 @@ const Twisted = () => {
               />
             </svg>
           </span>
-          , my vision has been sharpened by{" "}
+          , minha visão foi afiada por{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
-            4 years
+            4 anos
             <svg
               style={{
                 position: "absolute",
@@ -144,9 +145,9 @@ const Twisted = () => {
               />
             </svg>
           </span>{" "}
-          of visceral, unyielding design. I bend the digital fabric through{" "}
+          de design visceral e inflexível. Eu curvo o tecido digital por meio de{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
-            React, Vue, TypeScript, and UI/UX
+            React, Vue, TypeScript e UI/UX
             <svg
               style={{
                 position: "absolute",
@@ -171,7 +172,8 @@ const Twisted = () => {
               />
             </svg>
           </span>
-          , transforming fragmented thoughts into brutal, undeniable realities.
+          , transformando pensamentos fragmentados em realidades brutais e
+          incontestáveis.
         </Text>
       </Box>
     </Box>

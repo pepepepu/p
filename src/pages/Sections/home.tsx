@@ -58,7 +58,7 @@ const Hero = () => {
       <Box
         className="hero-anim"
         width={isMobile ? "100%" : "35%"}
-        style={{ marginTop: isMobile ? "0" : "15dvh" }}
+        style={{ marginTop: isMobile ? "50px" : "15dvh" }}
       >
         <Text
           fontSize={isMobile ? "5.5vw" : "1.5dvw"}

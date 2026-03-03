@@ -82,7 +82,7 @@ const Cornucopeiac = () => {
           lineHeight="0.9"
           style={{ textTransform: "uppercase" }}
         >
-          Pedro Paulo Oliveira<br></br> Barros Souza
+          Pedro Paulo Oliveira
         </Text>
         <Box
           display="flex"

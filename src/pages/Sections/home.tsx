@@ -67,7 +67,7 @@ const Hero = () => {
           textAlign="left"
           lineHeight={isMobile ? "1.2" : "1"}
         >
-          Eu construo sistemas da mesma forma que o desejo constrói identidade
+          Construo sistemas da mesma forma que o desejo constrói identidade
           <br />
           esticando a estrutura até que ela se torne expressão.
           <br />

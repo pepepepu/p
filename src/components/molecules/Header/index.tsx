@@ -8,14 +8,19 @@ import { useDeviceType } from "../../../hooks/useDeviceType";
 gsap.registerPlugin(ScrollTrigger);
 
 interface HeaderProps {
-  scrollContainer: React.RefObject<HTMLDivElement | null>;
+  sectionRefs: {
+    hero: React.RefObject<HTMLDivElement | null>;
+    twisted: React.RefObject<HTMLDivElement | null>;
+    manic: React.RefObject<HTMLDivElement | null>;
+    cornucopeiac: React.RefObject<HTMLDivElement | null>;
+  };
 }
 
-const Header = ({ scrollContainer }: HeaderProps) => {
+const Header = ({ sectionRefs }: HeaderProps) => {
   const phraseRef = useRef<HTMLDivElement>(null);
-  const twistedRef = useRef<HTMLDivElement>(null);
-  const manicRef = useRef<HTMLDivElement>(null);
-  const cornRef = useRef<HTMLDivElement>(null);
+  const twistedWordRef = useRef<HTMLDivElement>(null);
+  const manicWordRef = useRef<HTMLDivElement>(null);
+  const cornWordRef = useRef<HTMLDivElement>(null);
   const twistedScribble = useRef<SVGPathElement>(null);
   const manicScribble = useRef<SVGPathElement>(null);
   const cornScribble = useRef<SVGPathElement>(null);
@@ -54,64 +59,103 @@ const Header = ({ scrollContainer }: HeaderProps) => {
         },
       );
 
-      if (!scrollContainer.current) return;
+      if (
+        !sectionRefs.twisted.current ||
+        !sectionRefs.manic.current ||
+        !sectionRefs.cornucopeiac.current
+      ) {
+        return;
+      }
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scrollContainer.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-        },
-      });
-
-      tl.to(
-        [manicRef.current, cornRef.current, phraseRef.current],
-        { opacity: 0, duration: 1, ease: "power2.inOut" },
-        "twisted",
-      ).to(
-        twistedScribble.current,
-        { strokeDashoffset: 0, duration: 1.5, ease: "none" },
-        "twisted",
-      );
-
-      tl.to(
-        twistedRef.current,
-        { opacity: 0, duration: 1, ease: "power2.inOut" },
-        "manic",
-      )
-        .to(twistedScribble.current, { opacity: 0, duration: 0.5 }, "manic")
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRefs.twisted.current,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: -1,
+          },
+        })
         .to(
-          manicRef.current,
+          [manicWordRef.current, cornWordRef.current, phraseRef.current],
+          { opacity: 0, duration: 1, ease: "power2.inOut" },
+          0,
+        )
+        .to(
+          twistedScribble.current,
+          { strokeDashoffset: 0, duration: 1.5, ease: "none" },
+          0,
+        );
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRefs.manic.current,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: -1,
+          },
+        })
+        .to(
+          twistedScribble.current,
+          { strokeDashoffset: 105, duration: 1, ease: "none" },
+          0,
+        )
+        .to(
+          twistedWordRef.current,
+          { opacity: 0, duration: 1, ease: "power2.inOut" },
+          0,
+        )
+        .to(
+          manicWordRef.current,
           { opacity: 1, top: 0, duration: 1, ease: "power2.inOut" },
-          "manic",
+          0,
         )
         .to(
           manicScribble.current,
           { strokeDashoffset: 0, duration: 1.5, ease: "none" },
-          "manic",
+          0,
         );
 
-      tl.to(
-        manicRef.current,
-        { opacity: 0, duration: 1, ease: "power2.inOut" },
-        "corn",
-      )
-        .to(manicScribble.current, { opacity: 0, duration: 0.5 }, "corn")
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRefs.cornucopeiac.current,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: -1,
+          },
+        })
         .to(
-          cornRef.current,
+          manicScribble.current,
+          { strokeDashoffset: 105, duration: 1, ease: "none" },
+          0,
+        )
+        .to(
+          manicWordRef.current,
+          { opacity: 0, duration: 1, ease: "power2.inOut" },
+          0,
+        )
+        .to(
+          cornWordRef.current,
           { opacity: 1, top: 0, duration: 1, ease: "power2.inOut" },
-          "corn",
+          0,
         )
         .to(
           cornScribble.current,
           { strokeDashoffset: 0, duration: 1.5, ease: "none" },
-          "corn",
+          0,
         );
     });
 
     return () => ctx.revert();
-  }, [scrollContainer, isMobile]);
+  }, [sectionRefs, isMobile]);
 
   return (
     <Box
@@ -141,7 +185,7 @@ const Header = ({ scrollContainer }: HeaderProps) => {
         }
       >
         <div
-          ref={twistedRef}
+          ref={twistedWordRef}
           className="header-word"
           style={{
             position: isMobile ? "absolute" : "relative",
@@ -185,7 +229,7 @@ const Header = ({ scrollContainer }: HeaderProps) => {
         </div>
 
         <div
-          ref={manicRef}
+          ref={manicWordRef}
           className="header-word"
           style={{
             position: isMobile ? "absolute" : "relative",
@@ -229,7 +273,7 @@ const Header = ({ scrollContainer }: HeaderProps) => {
         </div>
 
         <div
-          ref={cornRef}
+          ref={cornWordRef}
           className="header-word"
           style={{
             position: isMobile ? "absolute" : "relative",

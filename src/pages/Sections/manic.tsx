@@ -12,227 +12,113 @@ const projectsData = [
     title: "aura",
     description:
       "Aura é um motor de reflexão sonora conectado aos seus dados do Last.fm. Seu histórico de escuta se transforma em uma paisagem viva de luz, cor e emoção.",
-    path: "M 10 90 L 50 10 L 90 90 Z",
+    path: "M 0 100 Q 50 -50 100 100",
     link: "https://github.com/pepepepu/aura",
   },
   {
     title: "media .",
     description:
-      "media . Um hub de identidade cultural que transforma seus dados do Spotify, Last.fm, Letterboxd e Pinterest em uma interface visual unificada, em tempo real.",
-    path: "M 10 50 Q 50 10 90 50 T 90 90",
+      "Um hub de identidade cultural que transforma seus dados do Spotify, Last.fm, Letterboxd e Pinterest em uma interface visual unificada, em tempo real.",
+    path: "M 10 50 Q 50 -20 90 50 T 10 50",
     link: "https://www.behance.net/gallery/241873165/media-Cultural-Identity-Hub-Dashboard",
+  },
+  {
+    title: "SGD",
+    description:
+      "Sistema de Gestão de Demandas desenvolvido para a EBSERH. Atuação como desenvolvedor front-end responsável pela construção completa da interface, arquitetura de componentes e fluxos, utilizando React e TypeScript.",
+    path: "M 20 50 L 50 20 L 80 50 L 50 80 Z",
+    link: "#",
+  },
+  {
+    title: "Portal do Servidor",
+    description:
+      "Portal oficial do Servidor do Estado de Sergipe. Responsável pelo design completo da plataforma (web e mobile), com foco em usabilidade, acessibilidade e na otimização dos serviços da Secretaria de Estado da Administração.",
+    path: "M 10 10 C 50 90, 50 10, 90 90",
+    link: "#",
   },
 ];
 
-const ProjectCard = ({
-  project,
-}: {
-  project: (typeof projectsData)[0];
-  index: number;
-}) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
-  const { isMobile } = useDeviceType();
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        pathRef.current,
-        { strokeDashoffset: 100 },
-        {
-          strokeDashoffset: 0,
-          duration: 2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 85%",
-            end: "center 40%",
-            scrub: 1,
-          },
-        },
-      );
-    }, cardRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const handleMouseEnter = () => {
-    if (isMobile) return;
-    gsap.to(cardRef.current, {
-      scale: 0.96,
-      duration: 0.4,
-      ease: "power3.out",
-    });
-    gsap.to(pathRef.current, {
-      strokeWidth: 4,
-      filter: "drop-shadow(0px 0px 12px rgba(255,255,255,0.8))",
-      duration: 0.4,
-      ease: "power3.out",
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (isMobile) return;
-    gsap.to(cardRef.current, {
-      scale: 1,
-      duration: 0.5,
-      ease: "power3.out",
-    });
-    gsap.to(pathRef.current, {
-      strokeWidth: 2,
-      filter: "drop-shadow(0px 0px 0px rgba(255,255,255,0))",
-      duration: 0.5,
-      ease: "power3.out",
-    });
-  };
-
-  const handleClick = () => {
-    window.open(project.link, "_blank", "noopener,noreferrer");
-  };
-
-  return (
-    <Box
-      ref={cardRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      style={{
-        aspectRatio: isMobile ? "auto" : "1 / 2",
-        border: `1px solid ${theme.colors.background}`,
-        display: "flex",
-        flexDirection: isMobile ? "row" : "column",
-        alignItems: isMobile ? "center" : "stretch",
-        cursor: "pointer",
-        overflow: "hidden",
-        padding: isMobile ? "1rem" : "0",
-        gap: isMobile ? "1rem" : "0",
-      }}
-    >
-      <Box
-        height={isMobile ? "60px" : "60%"}
-        width={isMobile ? "60px" : "100%"}
-        position="relative"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{
-          borderBottom: isMobile
-            ? "none"
-            : `1px solid ${theme.colors.background}`,
-          flexShrink: 0,
-        }}
-      >
-        <div
-          style={{
-            width: isMobile ? "100%" : "60%",
-            height: isMobile ? "100%" : "60%",
-          }}
-        >
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="xMidYMid meet"
-            style={{ overflow: "visible" }}
-          >
-            <path
-              ref={pathRef}
-              d={project.path}
-              fill="none"
-              stroke={theme.colors.background}
-              strokeWidth="2"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-              pathLength="100"
-              style={{ strokeDasharray: 100, strokeDashoffset: 100 }}
-            />
-          </svg>
-        </div>
-      </Box>
-
-      <Box
-        height={isMobile ? "auto" : "40%"}
-        width="100%"
-        padding={isMobile ? "0" : "1.5rem"}
-        display="flex"
-        flexDirection="column"
-        justifyContent={isMobile ? "center" : "space-between"}
-        gap={isMobile ? "0.5rem" : "0"}
-      >
-        <Text
-          fontSize={isMobile ? "1.2rem" : "1.5rem"}
-          fontFamily="Instrument Serif"
-          style={{ textTransform: "uppercase" }}
-        >
-          {project.title}
-        </Text>
-        <Text
-          fontSize={isMobile ? "0.85rem" : "1rem"}
-          fontFamily="Instrument Serif"
-          fontStyle={"italic"}
-          style={{
-            display: "-webkit-box",
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            WebkitLineClamp: isMobile ? 2 : "none",
-          }}
-        >
-          {project.description}
-        </Text>
-      </Box>
-    </Box>
-  );
-};
-
 const Manic = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useDeviceType();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".project-card-wrapper");
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
 
-      const tlIn = gsap.timeline({
+      const scrollTween = gsap.to(wrapper, {
+        x: () => -(wrapper.scrollWidth - window.innerWidth),
+        ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 20%",
+          pin: true,
           scrub: 1,
+          end: () => "+=" + wrapper.scrollWidth,
+          invalidateOnRefresh: true,
         },
       });
 
-      tlIn.fromTo(
-        cards,
-        { y: 150, opacity: 0, filter: "blur(15px)", scale: 0.9 },
-        {
-          y: 0,
-          opacity: 1,
-          filter: "blur(0px)",
-          scale: 1,
-          stagger: 0.05,
-          ease: "power2.out",
-        },
-      );
+      const columns = gsap.utils.toArray<HTMLElement>(".project-column");
 
-      const tlOut = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "bottom 60%",
-          end: "bottom 10%",
-          scrub: 1,
-        },
-      });
+      columns.forEach((col) => {
+        const path = col.querySelector(".project-path");
+        const animWrapper = col.querySelector(".project-anim-wrapper");
 
-      tlOut.to(cards, {
-        y: -150,
-        opacity: 0,
-        filter: "blur(15px)",
-        scale: 0.9,
-        stagger: 0.05,
-        ease: "power2.in",
+        if (path) {
+          gsap.fromTo(
+            path,
+            { strokeDashoffset: 200 },
+            {
+              strokeDashoffset: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: col,
+                containerAnimation: scrollTween,
+                start: "left 80%",
+                end: "right 20%",
+                scrub: true,
+              },
+            },
+          );
+        }
+
+        if (animWrapper) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: col,
+              containerAnimation: scrollTween,
+              start: "left 85%",
+              end: "right 15%",
+              scrub: true,
+            },
+          });
+
+          tl.fromTo(
+            animWrapper,
+            { opacity: 0, filter: "blur(15px)" },
+            {
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 1,
+              ease: "power2.out",
+            },
+          )
+            .to(animWrapper, {
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: 2,
+            })
+            .to(animWrapper, {
+              opacity: 0,
+              filter: "blur(15px)",
+              duration: 1,
+              ease: "power2.in",
+            });
+        }
       });
-    });
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
@@ -241,29 +127,181 @@ const Manic = () => {
     <Box
       ref={sectionRef}
       width="100%"
-      minHeight="100dvh"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      padding="10vh 0"
-      style={{ mixBlendMode: "difference", color: theme.colors.background }}
+      height="100dvh"
+      style={{
+        overflow: "hidden",
+        mixBlendMode: "difference",
+        color: theme.colors.background,
+        backgroundColor: "transparent",
+      }}
     >
       <Box
-        ref={gridRef}
-        width="90vw"
-        display={isMobile ? "flex" : "grid"}
-        flexDirection={isMobile ? "column" : "row"}
-        style={{
-          gridTemplateColumns: isMobile ? "none" : "repeat(6, 1fr)",
-          gap: isMobile ? "1rem" : "1.5vw",
-        }}
+        ref={wrapperRef}
+        display="flex"
+        height="100%"
+        style={{ width: "max-content", willChange: "transform" }}
       >
+        <Box
+          style={{
+            width: isMobile ? "7.5vw" : "5vw",
+            flexShrink: 0,
+          }}
+        />
+
+        <Box
+          className="project-column"
+          position="relative"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          style={{
+            width: isMobile ? "85vw" : "55vw",
+            height: "100%",
+            padding: isMobile ? "0 2rem" : "0 5rem",
+            flexShrink: 0,
+          }}
+        >
+          <Box
+            className="project-anim-wrapper"
+            width="100%"
+            height="100%"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+          >
+            <Text
+              fontSize={isMobile ? "3.5rem" : "5rem"}
+              fontFamily="Instrument Serif"
+              style={{
+                lineHeight: 0.9,
+                textTransform: "lowercase",
+                display: "block",
+                wordWrap: "break-word",
+              }}
+            >
+              convergência entre front-end e design ui/ux.
+            </Text>
+            <Box width={isMobile ? "100%" : "70%"} margin={"1rem 0 0 0"}>
+              <Text
+                fontSize={isMobile ? "1rem" : "1.2rem"}
+                fontFamily="Instrument Serif"
+                textAlign={"justify"}
+                style={{ opacity: 0.8, whiteSpace: "normal" }}
+              >
+                Navegando pela interseção entre a lógica estrutural e o sentir,
+                esculpo interfaces que transcendem a tela. Minha prática é um
+                exercício contínuo de coreografar o espaço digital, moldando
+                ecossistemas complexos com React, React Native, TypeScript e
+                Vue.js. É no embate entre a precisão cirúrgica da engenharia e a
+                crueza da estética brutalista que encontro meu norte: reduzo o
+                ruído para amplificar a função, forjando sistemas onde o código
+                se torna poesia tátil e a forma abraça brutalmente o seu
+                propósito.
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+
         {projectsData.map((project, index) => (
-          <div key={index} className="project-card-wrapper">
-            <ProjectCard project={project} index={index} />
-          </div>
+          <Box
+            key={index}
+            className="project-column"
+            position="relative"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            style={{
+              width: isMobile ? "85vw" : "55vw",
+              height: "100%",
+              padding: isMobile ? "0 2rem" : "0 5rem",
+              flexShrink: 0,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              if (project.link !== "#") {
+                window.open(project.link, "_blank", "noopener,noreferrer");
+              }
+            }}
+          >
+            <Box
+              className="project-anim-wrapper"
+              width="100%"
+              height="100%"
+              position="relative"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+            >
+              <Box
+                position="absolute"
+                width="100%"
+                height="100%"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                style={{
+                  top: 0,
+                  left: 0,
+                  pointerEvents: "none",
+                  zIndex: 0,
+                  opacity: 0.3,
+                }}
+              >
+                <svg
+                  width={isMobile ? "120%" : "100%"}
+                  height={isMobile ? "120%" : "100%"}
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="xMidYMid meet"
+                  style={{ overflow: "visible", mixBlendMode: "difference" }}
+                >
+                  <path
+                    className="project-path"
+                    d={project.path}
+                    fill="none"
+                    stroke={theme.colors.background}
+                    strokeWidth={isMobile ? "1.5" : "0.5"}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    pathLength="200"
+                    style={{ strokeDasharray: 200, strokeDashoffset: 200 }}
+                  />
+                </svg>
+              </Box>
+
+              <Box style={{ zIndex: 1 }}>
+                <Text
+                  className="project-title"
+                  fontSize={isMobile ? "4rem" : "8rem"}
+                  fontFamily="Instrument Serif"
+                  style={{
+                    textTransform: "uppercase",
+                    lineHeight: 0.85,
+                    display: "block",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  {project.title}
+                </Text>
+                <Box width={isMobile ? "100%" : "60%"}>
+                  <Text
+                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontFamily="Instrument Serif"
+                    style={{ opacity: 0.8, whiteSpace: "normal" }}
+                  >
+                    {project.description}
+                  </Text>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
         ))}
+
+        <Box
+          style={{
+            width: isMobile ? "7.5vw" : "22.5vw",
+            flexShrink: 0,
+          }}
+        />
       </Box>
     </Box>
   );

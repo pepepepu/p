@@ -12,6 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const heroRef = useRef<HTMLDivElement>(null);
+  const twistedRef = useRef<HTMLDivElement>(null);
+  const manicRef = useRef<HTMLDivElement>(null);
+  const cornRef = useRef<HTMLDivElement>(null);
+
   useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -35,9 +40,16 @@ const Home = () => {
   }, []);
 
   return (
-    <Box ref={containerRef} width="100dvw" position="relative" overflow="clip">
+    <Box ref={containerRef} width="100%" position="relative" overflow="clip">
       <LavaBackground />
-      <Header scrollContainer={containerRef} />
+      <Header
+        sectionRefs={{
+          hero: heroRef,
+          twisted: twistedRef,
+          manic: manicRef,
+          cornucopeiac: cornRef,
+        }}
+      />
 
       <Box
         position="relative"
@@ -47,10 +59,18 @@ const Home = () => {
         width="100%"
         style={{ mixBlendMode: "difference", color: "#FFFFFF" }}
       >
-        <Hero />
-        <Twisted />
-        <Manic />
-        <Cornucopeiac />
+        <div ref={heroRef}>
+          <Hero />
+        </div>
+        <div ref={twistedRef}>
+          <Twisted />
+        </div>
+        <div ref={manicRef}>
+          <Manic />
+        </div>
+        <div ref={cornRef}>
+          <Cornucopeiac />
+        </div>
       </Box>
     </Box>
   );

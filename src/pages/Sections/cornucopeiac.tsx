@@ -117,7 +117,7 @@ const Cornucopeiac = () => {
       <Box
         ref={bottomRightRef}
         position="absolute"
-        bottom={isMobile ? "27vh" : "18vh"}
+        bottom={isMobile ? "27vh" : "20vh"}
         right="5vw"
         display="flex"
         flexDirection="column"

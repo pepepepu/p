@@ -11,28 +11,40 @@ const projectsData = [
   {
     title: "aura",
     description:
-      "Aura é um motor de reflexão sonora conectado aos seus dados do Last.fm. Seu histórico de escuta se transforma em uma paisagem viva de luz, cor e emoção.",
+      "Aplicação que consome a API do Last.fm para identificar a música que o usuário está ouvindo no Spotify e gerar visualizações dinâmicas em tempo real.",
+    desdescription02:
+      "As animações e composições visuais são construídas a partir de cálculos de cores, energia e intensidade sonora, utilizando React, TypeScript e GSAP para criar uma experiência interativa e performática.",
+    tags: "React • TypeScript • GSAP • Last.fm API",
     path: "M 0 100 Q 50 -50 100 100",
     link: "https://github.com/pepepepu/aura",
   },
   {
     title: "media .",
     description:
-      "Um hub de identidade cultural que transforma seus dados do Spotify, Last.fm, Letterboxd e Pinterest em uma interface visual unificada, em tempo real.",
+      "Conceito de produto focado em identidade cultural e recomendação contextual.",
+    desdescription02:
+      "O Media propõe um hub que sugere artistas (Spotify), filmes (Letterboxd) e referências visuais (Pinterest) com base no que o usuário está ouvindo. Projeto desenvolvido no Figma como exploração estratégica de UX, branding e posicionamento de produto, publicado no Behance.",
+    tags: "Product Design • UX/UI • Figma • Branding",
     path: "M 10 50 Q 50 -20 90 50 T 10 50",
     link: "https://www.behance.net/gallery/241873165/media-Cultural-Identity-Hub-Dashboard",
   },
   {
     title: "SGD",
     description:
-      "Sistema de Gestão de Demandas desenvolvido para a EBSERH. Atuação como desenvolvedor front-end responsável pela construção completa da interface, arquitetura de componentes e fluxos, utilizando React e TypeScript.",
+      "Sistema de Gerenciamento de Demandas desenvolvido para a EBSERH, voltado à organização e acompanhamento de processos internos de um departamento específico.",
+    desdescription02:
+      "Responsável pelo front-end completo da aplicação, incluindo arquitetura de componentes, modelagem de fluxos e construção de interfaces para criação e gestão de demandas, editais, contratos, empresas conveniadas e briefings. Desenvolvido com React, TypeScript e Framer Motion.",
+    tags: "React • TypeScript • Framer Motion • Front-End Architecture",
     path: "M 20 50 L 50 20 L 80 50 L 50 80 Z",
     link: "#",
   },
   {
     title: "Portal do Servidor",
     description:
-      "Portal oficial do Servidor do Estado de Sergipe. Responsável pelo design completo da plataforma (web e mobile), com foco em usabilidade, acessibilidade e na otimização dos serviços da Secretaria de Estado da Administração.",
+      "Portal oficial do Servidor do Estado de Sergipe, utilizado para consulta de informações funcionais e financeiras.",
+    desdescription02:
+      "Responsável pelo design completo da experiência (web e mobile) e desenvolvimento das interfaces em React (web) e React Native (Android/iOS). A plataforma permite acesso a folha de pagamento, fichas financeiras, consignados, declaração de vínculo e outros serviços institucionais.",
+    tags: "React • React Native • UI Architecture • Design System",
     path: "M 10 10 C 50 90, 50 10, 90 90",
     link: "#",
   },
@@ -188,15 +200,15 @@ const Manic = () => {
                 textAlign={"justify"}
                 style={{ opacity: 0.8, whiteSpace: "normal" }}
               >
-                Navegando pela interseção entre a lógica estrutural e o sentir,
-                esculpo interfaces que transcendem a tela. Minha prática é um
-                exercício contínuo de coreografar o espaço digital, moldando
-                ecossistemas complexos com React, React Native, TypeScript e
-                Vue.js. É no embate entre a precisão cirúrgica da engenharia e a
-                crueza da estética brutalista que encontro meu norte: reduzo o
-                ruído para amplificar a função, forjando sistemas onde o código
-                se torna poesia tátil e a forma abraça brutalmente o seu
-                propósito.
+                Atuo no desenvolvimento de interfaces e aplicações digitais,
+                equilibrando estrutura técnica e experiência do usuário.
+                Trabalho com React, React Native, TypeScript e Vue.js na
+                construção de sistemas escaláveis, performáticos e bem
+                estruturados.<br></br>
+                <br></br>Tenho foco em arquitetura de front-end, organização de
+                código e clareza na interface. Busco reduzir complexidade,
+                melhorar usabilidade e entregar produtos funcionais,
+                consistentes e orientados a resultados.
               </Text>
             </Box>
           </Box>
@@ -282,13 +294,53 @@ const Manic = () => {
                 >
                   {project.title}
                 </Text>
-                <Box width={isMobile ? "100%" : "60%"}>
+                <Box
+                  width={isMobile ? "100%" : "60%"}
+                  display={"flex"}
+                  flexDirection={"column"}
+                  gap={"10px"}
+                  margin={"15px 0 0 0"}
+                >
                   <Text
                     fontSize={isMobile ? "1rem" : "1.2rem"}
                     fontFamily="Instrument Serif"
                     style={{ opacity: 0.8, whiteSpace: "normal" }}
                   >
                     {project.description}
+                  </Text>
+                  <Text
+                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontFamily="Instrument Serif"
+                    style={{ opacity: 0.8, whiteSpace: "normal" }}
+                  >
+                    {project.desdescription02}
+                  </Text>
+                  <Text
+                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontFamily="Instrument Serif"
+                    style={{ opacity: 0.8, whiteSpace: "normal" }}
+                  >
+                    Tags:{" "}
+                    <strong
+                      style={{
+                        fontStyle: "italic",
+                        fontWeight: 500,
+                        textDecoration: "underline",
+                      }}
+                    >
+                      {project.tags}
+                    </strong>
+                  </Text>
+                  <Text
+                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontFamily="Instrument Serif"
+                    style={{
+                      opacity: 0.8,
+                      whiteSpace: "normal",
+                      marginTop: "10px",
+                    }}
+                  >
+                    Ver projeto
                   </Text>
                 </Box>
               </Box>

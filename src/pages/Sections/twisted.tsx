@@ -90,8 +90,7 @@ const Twisted = () => {
           lineHeight={isMobile ? "1.3" : "1.1"}
           style={{ textTransform: "uppercase" }}
         >
-          Destilando o caos em intenção pura. Enraizado nas profundezas
-          acadêmicas da{" "}
+          Desenvolvedor Front-End com formação pela{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
             UFS
             <svg
@@ -118,7 +117,7 @@ const Twisted = () => {
               />
             </svg>
           </span>
-          , minha visão foi afiada por{" "}
+          , com{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
             4 anos
             <svg
@@ -145,7 +144,9 @@ const Twisted = () => {
               />
             </svg>
           </span>{" "}
-          de design visceral e inflexível. Eu curvo o tecido digital por meio de{" "}
+          de experiência em desenvolvimento de interfaces modernas,
+          performáticas e orientadas à experiência do usuário. Atuo
+          principalmente com{" "}
           <span style={{ position: "relative", display: "inline-block" }}>
             React, Vue, TypeScript e UI/UX
             <svg
@@ -172,8 +173,8 @@ const Twisted = () => {
               />
             </svg>
           </span>
-          , transformando pensamentos fragmentados em realidades brutais e
-          incontestáveis.
+          , desenvolvendo aplicações escaláveis, responsivas e com foco em
+          performance, arquitetura e qualidade de código.
         </Text>
       </Box>
     </Box>

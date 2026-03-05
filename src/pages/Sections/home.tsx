@@ -57,7 +57,7 @@ const Hero = () => {
     >
       <Box
         className="hero-anim"
-        width={isMobile ? "100%" : "45%"}
+        width={isMobile ? "100%" : "50%"}
         style={{ marginTop: isMobile ? "70px" : "15dvh" }}
       >
         <Text
@@ -67,13 +67,14 @@ const Hero = () => {
           textAlign="left"
           lineHeight={isMobile ? "1.2" : "1"}
         >
-          Construo sistemas da mesma forma que o desejo constrói identidade
+          Construo sistemas com foco em clareza, estrutura e intenção.
           <br />
-          esticando a estrutura até que ela se torne expressão.
+          Transformo requisitos complexos em interfaces organizadas e
+          funcionais.
           <br />
-          Lógica, intensidade e excesso não são contradições.
+          Lógica, performance e experiência do usuário não competem.
           <br />
-          São arquitetura.
+          São parte da mesma arquitetura.
         </Text>
       </Box>
 
@@ -113,11 +114,11 @@ const Hero = () => {
           width={isMobile ? "100%" : "auto"}
         >
           <Text
-            fontSize={isMobile ? "4.5vw" : "1.2dvw"}
+            fontSize={isMobile ? "4.5vw" : "1dvw"}
             fontFamily="Instrument Serif"
             color="#ffffff"
           >
-            projetado por pp, uma mente em distorção
+            projetado por pp. explorando limites entre forma e função.
           </Text>
         </Box>
       </Box>

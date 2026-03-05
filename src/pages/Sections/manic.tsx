@@ -371,7 +371,7 @@ const Manic = () => {
             </Text>
             <Box width={"100%"} margin={"1rem 0 0 0"}>
               <Text
-                fontSize="1.2dvw"
+                fontSize="1dvw"
                 fontFamily="Instrument Serif"
                 textAlign={"justify"}
                 style={{ opacity: 0.8, whiteSpace: "normal" }}
@@ -459,7 +459,7 @@ const Manic = () => {
               <Box style={{ zIndex: 1 }}>
                 <Text
                   className="project-title"
-                  fontSize="8dvw"
+                  fontSize="6dvw"
                   fontFamily="Instrument Serif"
                   style={{
                     textTransform: "uppercase",
@@ -470,23 +470,28 @@ const Manic = () => {
                 >
                   {project.title}
                 </Text>
-                <Box width="60%">
+                <Box
+                  width="60%"
+                  display={"flex"}
+                  flexDirection={"column"}
+                  gap={"20px"}
+                >
                   <Text
-                    fontSize="1.2dvw"
+                    fontSize="1dvw"
                     fontFamily="Instrument Serif"
                     style={{ opacity: 0.8, whiteSpace: "normal" }}
                   >
                     {project.description}
                   </Text>
                   <Text
-                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontSize="1dvw"
                     fontFamily="Instrument Serif"
                     style={{ opacity: 0.8, whiteSpace: "normal" }}
                   >
                     {project.desdescription02}
                   </Text>
                   <Text
-                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontSize="1dvw"
                     fontFamily="Instrument Serif"
                     style={{ opacity: 0.8, whiteSpace: "normal" }}
                   >
@@ -502,7 +507,7 @@ const Manic = () => {
                     </strong>
                   </Text>
                   <Text
-                    fontSize={isMobile ? "1rem" : "1.2rem"}
+                    fontSize="1dvw"
                     fontFamily="Instrument Serif"
                     style={{
                       opacity: 0.8,

@@ -1,6 +1,6 @@
 # Portfólio - Pedro Paulo Oliveira
 
-Como Desenvolvedor Front-end e UI/UX Designer com 5 anos de experiência, construí este portfólio para refletir não apenas a minha identidade visual, mas também o meu domínio sobre interações complexas, performance de renderização e arquitetura de componentes escaláveis.
+Como Desenvolvedor Front-end e UI/UX Designer com 4 anos de experiência, construí este portfólio para refletir não apenas a minha identidade visual, mas também o meu domínio sobre interações complexas, performance de renderização e arquitetura de componentes escaláveis.
 
 Este projeto é uma Single Page Application (SPA) altamente interativa, onde a fronteira entre design e engenharia se dissolve através do uso de animações avançadas e manipulação matemática do DOM.
 

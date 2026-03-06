@@ -29,6 +29,16 @@ const projectsData = [
     link: "https://www.behance.net/gallery/241873165/media-Cultural-Identity-Hub-Dashboard",
   },
   {
+    title: "Authority LP",
+    description:
+      "Landing Page de alta conversão para profissionais liberais com foco em autoridade e design premium.",
+    desdescription02:
+      "Desenvolvida com React, TypeScript e GSAP, esta landing page foca em performance e sofisticação. O projeto utiliza animações fluidas para guiar a jornada do usuário, combinando uma estética minimalista (off-white e verde musgo) com uma arquitetura de código escalável para médicos e advogados de alto padrão.",
+    tags: "React • GSAP • TypeScript • UI/UX • Styled Components",
+    path: "M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80",
+    link: "https://github.com/pepepepu/landing-page.git",
+  },
+  {
     title: "SGD",
     description:
       "Sistema de Gerenciamento de Demandas desenvolvido para a EBSERH, voltado à organização e acompanhamento de processos internos de um departamento específico.",
@@ -280,18 +290,25 @@ const Manic = () => {
 
             <Box style={{ zIndex: 1 }}>
               <Text
-                fontSize="18vw"
+                fontSize="15vw"
                 fontFamily="Instrument Serif"
                 style={{
                   textTransform: "uppercase",
                   lineHeight: 0.85,
                   display: "block",
                   wordWrap: "break-word",
+                  marginBottom: "10px",
                 }}
               >
                 {project.title}
               </Text>
-              <Box width="100%" marginTop="1rem">
+              <Box
+                width="100%"
+                marginTop="1rem"
+                display={"flex"}
+                flexDirection={"column"}
+                gap={"20px"}
+              >
                 <Text
                   fontSize="1.1rem"
                   fontFamily="Instrument Serif"
@@ -302,6 +319,48 @@ const Manic = () => {
                   }}
                 >
                   {project.description}
+                </Text>
+                <Text
+                  fontSize="1.1rem"
+                  fontFamily="Instrument Serif"
+                  style={{
+                    opacity: 0.8,
+                    whiteSpace: "normal",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {project.desdescription02}
+                </Text>
+                <Text
+                  fontSize="1.1rem"
+                  fontFamily="Instrument Serif"
+                  style={{
+                    opacity: 0.8,
+                    whiteSpace: "normal",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  Tags:{" "}
+                  <strong
+                    style={{
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                      textDecoration: "underline",
+                    }}
+                  >
+                    {project.tags}
+                  </strong>
+                </Text>
+                <Text
+                  fontSize="1.1rem"
+                  fontFamily="Instrument Serif"
+                  style={{
+                    opacity: 0.8,
+                    whiteSpace: "normal",
+                    marginTop: "10px",
+                  }}
+                >
+                  Ver projeto
                 </Text>
               </Box>
             </Box>

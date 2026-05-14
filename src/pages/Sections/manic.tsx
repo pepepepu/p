@@ -29,7 +29,7 @@ const projectsData = [
     link: "https://www.behance.net/gallery/241873165/media-Cultural-Identity-Hub-Dashboard",
   },
   {
-    title: "Authority LP",
+    title: "landingPPage",
     description:
       "Landing Page de alta conversão para profissionais liberais com foco em autoridade e design premium.",
     desdescription02:
@@ -39,24 +39,14 @@ const projectsData = [
     link: "https://github.com/pepepepu/landing-page.git",
   },
   {
-    title: "SGD",
+    title: "Zine",
     description:
-      "Sistema de Gerenciamento de Demandas desenvolvido para a EBSERH, voltado à organização e acompanhamento de processos internos de um departamento específico.",
+      "Um zine (ou fanzine) é uma publicação independente, artesanal e autoeditada, historicamente produzida de forma amadora por artistas e entusiastas.",
     desdescription02:
-      "Responsável pelo front-end completo da aplicação, incluindo arquitetura de componentes, modelagem de fluxos e construção de interfaces para criação e gestão de demandas, editais, contratos, empresas conveniadas e briefings. Desenvolvido com React, TypeScript e Framer Motion.",
-    tags: "React • TypeScript • Framer Motion • Front-End Architecture",
-    path: "M 20 50 L 50 20 L 80 50 L 50 80 Z",
-    link: "#",
-  },
-  {
-    title: "Portal do Servidor",
-    description:
-      "Portal oficial do Servidor do Estado de Sergipe, utilizado para consulta de informações funcionais e financeiras.",
-    desdescription02:
-      "Responsável pelo design completo da experiência (web e mobile) e desenvolvimento das interfaces em React (web) e React Native (Android/iOS). A plataforma permite acesso a folha de pagamento, fichas financeiras, consignados, declaração de vínculo e outros serviços institucionais.",
-    tags: "React • React Native • UI Architecture • Design System",
-    path: "M 10 10 C 50 90, 50 10, 90 90",
-    link: "#",
+      "Nascidos na contracultura, os zines são marcados pela estética lo-fi, montagens manuais impressas em xerox e a forte filosofia do 'faça você mesmo' (DIY).",
+    tags: "React • GSAP • TypeScript • UI/UX • SVG",
+    path: "M 15 85 C 40 10, 85 40, 50 50 C 15 60, 60 90, 85 15",
+    link: "https://github.com/pepepepu/zine",
   },
 ];
 

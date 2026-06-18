@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "pedro",
   "short_name": "pedro",
+=======
+  "name": "cornucopeiac",
+  "short_name": "cornucopeiac",
+>>>>>>> d5ae6922798c1a7c7a656a0efce6dcfa23a8b60a
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

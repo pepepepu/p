@@ -92,9 +92,9 @@ const Hero = () => {
         >
           Pedro Paulo
           <br />
-          Cientista da Computação
+          Desenvolvedor front end
           <br />
-          Desenvolvedor UI/UX, mobile e web
+          Designer UI&UX
         </Text>
       </Box>
 
